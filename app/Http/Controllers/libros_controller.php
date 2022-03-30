@@ -14,7 +14,7 @@ class libros_controller extends Controller
         $libros = m_libros::all();
         return $libros;
     }*/
-
+    /**Lista los libros y conecta con la tabla autor para obtener el nombre */
     public function lista_libros(){
         $libros= DB::table('libros')
             ->join("autor","autor.id","=","libros.id_autor")
@@ -24,6 +24,7 @@ class libros_controller extends Controller
         return $libros;
     }
 
+    /**Realiza la funcion para eliminar un libro en base a su ID */
     public function eliminar_libro(Request $request){
         $libro = m_libros::find($request->id);
 
@@ -31,6 +32,7 @@ class libros_controller extends Controller
         
     }
 
+    /**Guarda los nuevos libros y realiza las modificaciones a un libro existente */
     public function guardar_libro(Request $request){
 
        
