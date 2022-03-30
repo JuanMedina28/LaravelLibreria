@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\autor_controller;
 use App\Http\Controllers\libros_controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -25,10 +26,33 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
         return 'Hola Mundo';
     }
 );*/
-
+/**Rutas de Libros */
 Route::get('libros/lista',
     [libros_controller::class,'lista_libros']  
 )->middleware("auth:api");
+
+Route::post('libros/guardar',
+    [libros_controller::class,'guardar_libro']  
+)->middleware("auth:api");
+
+Route::post('libros/eliminar',
+    [libros_controller::class,'eliminar_libro']  
+)->middleware("auth:api");
+
+/**Rutas de Autores */
+
+Route::get('autores/lista',
+    [autor_controller::class,'lista_autores']  
+)->middleware("auth:api");
+
+Route::get('autores/eliminar',
+    [autor_controller::class,'eliminar_autor']  
+)->middleware("auth:api");
+
+Route::post('autores/guardar',
+    [autor_controller::class,'guardar_autor']  
+)->middleware("auth:api");
+
 
 Route::post('login', function (Request $request){
 
